@@ -9,15 +9,6 @@ public class SessionBuilder {
 
 private static SessionFactory sessionFactory;
     
-	static{
-		try {
-			setUp();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	public static void setUp() throws Exception {
 		// A SessionFactory is set up once for an application!
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
