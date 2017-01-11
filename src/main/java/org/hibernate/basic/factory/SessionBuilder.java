@@ -1,18 +1,24 @@
 package org.hibernate.basic.factory;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+/**
+ * A SessionFactory is set up once for an application!
+ * 
+ * */
 public class SessionBuilder {
 
 private static SessionFactory sessionFactory;
     
 	public static void setUp() throws Exception {
-		// A SessionFactory is set up once for an application!
+		
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-				.configure("org/hibernate/cfg/xml/hibernate-db.cfg.xml") // configures settings from *.cfg.xml, default hibernate.cfg.xml
+				.loadProperties("org/hibernate/cfg/properties/hibernate-db.properties") // not required. configures settings from *.properties, default hibernate.properties
+				.configure() // here it required only to map entities
 				.build();
 		try {
 			sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
@@ -20,8 +26,17 @@ private static SessionFactory sessionFactory;
 		catch (Exception e) {
 			// The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
 			// so destroy it manually.
+			e.printStackTrace();
 			StandardServiceRegistryBuilder.destroy( registry );
 		}
 	}
+	
+	public static Session getSession() throws Exception{
+		if(sessionFactory == null){
+			setUp();
+		}
+		return sessionFactory.openSession();
+	}
+
 
 }
