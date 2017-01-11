@@ -19,7 +19,8 @@
 	+-----+------+-----------------+--------------+---------+------+-------+------------------+
 
  
-* Data modeling using basic type, enum, date
+* Data modeling using basic type, automate schema generation, statement logging and stat
+* Enum, date, Attribute convertor
 * Data modelin using collection,              
 * Data modeling using entity, 
 * Entity associationship                                  
