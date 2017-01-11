@@ -20,6 +20,7 @@
 
  
 * Data modeling using basic type, automate schema generation, statement logging and stat
+* Identifier and generator
 * Enum, date, Attribute convertor
 * Data modelin using collection,              
 * Data modeling using entity, 
