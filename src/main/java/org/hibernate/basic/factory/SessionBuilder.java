@@ -12,7 +12,7 @@ private static SessionFactory sessionFactory;
 	public static void setUp() throws Exception {
 		// A SessionFactory is set up once for an application!
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-				.configure() // configures settings from hibernate.cfg.xml
+				.configure("org/hibernate/cfg/xml/hibernate-db.cfg.xml") // configures settings from *.cfg.xml, default hibernate.cfg.xml
 				.build();
 		try {
 			sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
