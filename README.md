@@ -3,6 +3,7 @@
 * Configuring session factory,
   1. Setup session factory using StandardServiceRegistry
   2. execute below statement
+  
      mysql> SHOW PROCESSLIST;
 
 	+-----+------+-----------------+--------------+---------+------+-------+------------------+
