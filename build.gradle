@@ -2,7 +2,7 @@
 apply plugin: 'java'
 apply plugin:'eclipse'
 apply plugin:'application'
-mainClassName = "org.hibernate.basic.Application"
+mainClassName = "org.hibernate.basic.service.EmployeeService"
 
 
 jar {
