@@ -2,8 +2,10 @@ package org.hibernate.basic.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="employee")
 public class Employee {
 
 	private long empId;

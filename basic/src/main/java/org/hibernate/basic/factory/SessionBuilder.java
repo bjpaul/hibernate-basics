@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 /**
  * A SessionFactory is set up once for an application!
@@ -12,7 +13,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
  * */
 public class SessionBuilder {
 
-private static SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory;
     
 	public static void setUp() throws Exception {
 		
@@ -31,12 +32,19 @@ private static SessionFactory sessionFactory;
 		}
 	}
 	
-	public static Session getSession() throws Exception{
-		if(sessionFactory == null){
-			setUp();
+	public static Session curentSession() throws Exception{
+		while(sessionFactory == null){
+			synchronized (SessionBuilder.class) {
+				if(sessionFactory == null){
+					setUp();
+				}
+			}
 		}
-		return sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
+		if(session.getTransaction().getStatus() == TransactionStatus.NOT_ACTIVE){
+			session.beginTransaction();
+		}
+		return session;
 	}
-
 
 }
