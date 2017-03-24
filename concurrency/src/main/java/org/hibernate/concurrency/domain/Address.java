@@ -23,7 +23,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 @Table(name="address")
 //@OptimisticLocking(type= OptimisticLockType.ALL)
 //@OptimisticLocking(type= OptimisticLockType.DIRTY)
-@DynamicUpdate
+//@DynamicUpdate
 public class Address {
 	
 	@Id

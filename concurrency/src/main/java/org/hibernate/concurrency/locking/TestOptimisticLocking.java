@@ -16,9 +16,9 @@ public class TestOptimisticLocking {
 	
 	public static void main(String args[]) throws InterruptedException{
 		
-		execute(() -> update("Process 1 ", 10000));		
+		execute(() -> update("Writer 1", 10000));		
 		Thread.sleep(2000);
-		execute(() -> update("Process 2 ", 0));
+		execute(() -> update("Writer 2", 0));
 	}
 	
 	private static void update(String statement, long sleepTime) {
