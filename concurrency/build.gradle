@@ -1,9 +1,21 @@
 
 apply plugin: 'java'
 apply plugin:'eclipse'
-apply plugin:'application'
-mainClassName = "org.hibernate.concurrency.locking.TestOptimisticLocking"
 
+task run(type: JavaExec) {
+	if(project.hasProperty('start')){
+		if(start == 'version'){
+			main = "org.hibernate.concurrency.locking.TestVersion"
+		}else if(start == 'optimistic'){
+			main = "org.hibernate.concurrency.locking.TestOptimisticLocking"
+		}else {
+			main = "org.hibernate.concurrency.locking.TestPessimisticLocking"
+		}
+	}else{
+		main = "org.hibernate.concurrency.locking.TestPessimisticLocking"	
+	}
+    classpath = sourceSets.main.runtimeClasspath
+}
 
 jar {
 	baseName = 'hibernate-concurrency'

@@ -18,21 +18,21 @@ public class TestPessimisticLocking {
 	
 	public static void main(String args[]) throws InterruptedException{
 
-		execute(() -> selectEmployee("select emp 1", LockModeType.PESSIMISTIC_READ, 20000));		
+		execute(() -> selectEmployee("Reader 1", LockModeType.PESSIMISTIC_READ, 20000));		
 		Thread.sleep(2000);
-		execute(() -> selectEmployee("select emp 2", LockModeType.PESSIMISTIC_READ, 0));
+		execute(() -> selectEmployee("Reader 2", LockModeType.PESSIMISTIC_READ, 0));
 		
-//		execute(() -> selectEmployee("select emp 1", LockModeType.PESSIMISTIC_WRITE, 20000));		
+//		execute(() -> selectEmployee("Reader 1", LockModeType.PESSIMISTIC_WRITE, 20000));		
 //		Thread.sleep(2000);
-//		execute(() -> selectEmployee("select emp 2", LockModeType.PESSIMISTIC_READ, 0));
+//		execute(() -> selectEmployee("Reader 2", LockModeType.PESSIMISTIC_READ, 0));
 
-//		execute(() -> selectEmployee("select emp", LockModeType.PESSIMISTIC_WRITE, 10000));		
+//		execute(() -> selectEmployee("Reader", LockModeType.PESSIMISTIC_WRITE, 10000));		
 //		Thread.sleep(2000);
-//		execute(() -> updateEmployee("update ", LockModeType.PESSIMISTIC_WRITE));
+//		execute(() -> updateEmployee("Writer ", LockModeType.PESSIMISTIC_WRITE));
 		
-//		execute(() -> selectEmployee("select emp", LockModeType.PESSIMISTIC_READ, 10000));		
+//		execute(() -> selectEmployee("Reader", LockModeType.PESSIMISTIC_READ, 10000));		
 //		Thread.sleep(2000);
-//		execute(() -> updateEmployee("update ", LockModeType.PESSIMISTIC_WRITE));
+//		execute(() -> updateEmployee("Writer ", LockModeType.PESSIMISTIC_WRITE));
 
 //		execute(() -> selectEmployee("version_increment ", LockModeType.PESSIMISTIC_FORCE_INCREMENT, 0));
 	}
