@@ -21,10 +21,6 @@ public class TestPessimisticLocking {
 		execute(() -> selectEmployee("Reader 1", LockModeType.PESSIMISTIC_READ, 20000));		
 		Thread.sleep(2000);
 		execute(() -> selectEmployee("Reader 2", LockModeType.PESSIMISTIC_READ, 0));
-		
-//		execute(() -> selectEmployee("Reader 1", LockModeType.PESSIMISTIC_WRITE, 20000));		
-//		Thread.sleep(2000);
-//		execute(() -> selectEmployee("Reader 2", LockModeType.PESSIMISTIC_READ, 0));
 
 //		execute(() -> selectEmployee("Reader", LockModeType.PESSIMISTIC_WRITE, 10000));		
 //		Thread.sleep(2000);
@@ -80,12 +76,16 @@ public class TestPessimisticLocking {
 			.setLockMode(lockModeType); 
 		
 		session.beginTransaction();
-		logger.info(statement+": begin transaction and going to update ");
+		logger.info(statement+": begin transaction");
 		
 		Employee employee = query.getSingleResult();
+		logger.info(statement+": employee result => "+employee);
+		
+		logger.info(statement+": update employee.name= 'changed'");
 		employee.setName("changed");
 		session.save(employee);
-		
+
+		logger.info(statement+": employee result => "+employee);
 		session.getTransaction().commit();
 		logger.info(statement+": closing transaction");
 	}
