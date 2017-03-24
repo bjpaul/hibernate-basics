@@ -26,8 +26,9 @@ public class TestOptimisticLocking {
 		Session session = sessionFactory.openSession();
 		
 		session.beginTransaction();
-		logger.info(statement+": begin transaction and going to update ");
+		logger.info(statement+": begin transaction ");
 		
+		logger.info(statement+": fetching address");
 		Address address = session.get(Address.class, 1l);
 		logger.info(statement+": address => "+address);
 		
@@ -39,13 +40,14 @@ public class TestOptimisticLocking {
 				// TODO Auto-generated catch block
 			}
 		}
-		
-		address.setStreet("changed "+ address.getStreet());
+		logger.info(statement+": update address.city = 'changed' ");
+		address.setCity("changed ");
 		session.save(address);
 		
 		session.getTransaction().commit();
-		logger.info(statement+": closing transaction");
 		logger.info(statement+": address => "+address);
+		logger.info(statement+": closing transaction");
+		
 	}
 		
 }

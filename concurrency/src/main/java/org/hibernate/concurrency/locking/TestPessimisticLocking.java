@@ -84,9 +84,9 @@ public class TestPessimisticLocking {
 		logger.info(statement+": update employee.name= 'changed'");
 		employee.setName("changed");
 		session.save(employee);
-
-		logger.info(statement+": employee result => "+employee);
+		
 		session.getTransaction().commit();
+		logger.info(statement+": employee result => "+employee);
 		logger.info(statement+": closing transaction");
 	}
 	
